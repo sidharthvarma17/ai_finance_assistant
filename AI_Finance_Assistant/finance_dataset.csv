@@ -1,0 +1,34 @@
+description,category
+swiggy dinner,Food
+swiggy biryani,Food
+restaurant lunch,Food
+pizza order,Food
+zomato food,Food
+grocery shopping,Food
+uber ride,Transport
+ola cab,Transport
+bus ticket,Transport
+train ticket,Transport
+petrol filling,Transport
+auto ride,Transport
+amazon shopping,Shopping
+clothes purchase,Shopping
+shoes purchase,Shopping
+shopping mall,Shopping
+mobile purchase,Shopping
+netflix subscription,Entertainment
+movie ticket,Entertainment
+cinema ticket,Entertainment
+concert ticket,Entertainment
+electricity bill,Bills
+water bill,Bills
+internet bill,Bills
+mobile bill,Bills
+college fees,Education
+books purchase,Education
+online course,Education
+school fees,Education
+medicine purchase,Health
+doctor appointment,Health
+hospital bill,Health
+pharmacy,Health

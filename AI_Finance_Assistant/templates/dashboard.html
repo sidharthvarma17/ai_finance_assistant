@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>💰 Finance Dashboard</h2>
+
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/add-transaction">Add Transaction</a>
+        <a href="/transactions">Transactions</a>
+        <a href="/budget">Budget</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>
+        Welcome, {{ session["user_name"] }} 👋
+    </h1>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Budget</h3>
+            <h2>₹{{ total_budget }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Expenses</h3>
+            <h2>₹{{ expenses }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Balance</h3>
+            <h2>₹{{ balance }}</h2>
+        </div>
+
+    </div>
+
+
+    <div class="chart-box">
+
+        <h2>Expense by Category</h2>
+
+        <canvas id="expenseChart"></canvas>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Recent Transactions</h2>
+
+        <table>
+
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Category</th>
+            </tr>
+
+            {% for transaction in recent_transactions %}
+
+            <tr>
+
+                <td>{{ transaction.date }}</td>
+
+                <td>{{ transaction.description }}</td>
+
+                <td>₹{{ transaction.amount }}</td>
+
+                <td>{{ transaction.type }}</td>
+
+                <td>{{ transaction.category }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const categories = {{ categories | tojson }};
+
+const amounts = {{ category_amounts | tojson }};
+
+new Chart(
+    document.getElementById("expenseChart"),
+    {
+        type: "pie",
+
+        data: {
+            labels: categories,
+
+            datasets: [{
+                data: amounts
+            }]
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>

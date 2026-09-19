@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Transactions</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Transactions</h2>
+
+    <div>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/add-transaction">
+            Add Transaction
+        </a>
+
+        <a href="/budget">Budget</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Transaction History</h1>
+
+
+    <table>
+
+        <tr>
+
+            <th>Date</th>
+
+            <th>Description</th>
+
+            <th>Amount</th>
+
+            <th>Type</th>
+
+            <th>Category</th>
+
+            <th>Action</th>
+
+        </tr>
+
+
+        {% for transaction in transactions %}
+
+        <tr>
+
+            <td>{{ transaction.date }}</td>
+
+            <td>{{ transaction.description }}</td>
+
+            <td>₹{{ transaction.amount }}</td>
+
+            <td>{{ transaction.type }}</td>
+
+            <td>{{ transaction.category }}</td>
+
+            <td>
+
+                <a
+                    href="/delete-transaction/{{ transaction.id }}"
+                    onclick="return confirm('Delete this transaction?')"
+                >
+                    Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

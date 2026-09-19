@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Budget</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>💰 Budget Management</h2>
+
+    <div>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/transactions">Transactions</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="form-container">
+
+    <h2>Create Monthly Budget</h2>
+
+    <form method="POST">
+
+        <label>Month</label>
+
+        <input
+            type="month"
+            name="month"
+            required
+        >
+
+
+        <label>Budget Type</label>
+
+        <select name="budget_type" id="budgetType" onchange="toggleCategory()">
+
+            <option value="total">Total Month Budget</option>
+            <option value="category">Category Budget</option>
+
+        </select>
+
+
+        <div id="categoryBox" style="display:none;">
+
+            <label>Category</label>
+
+            <select name="category">
+
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Shopping</option>
+                <option>Bills</option>
+                <option>Entertainment</option>
+                <option>Health</option>
+                <option>Education</option>
+                <option>Other</option>
+
+            </select>
+
+        </div>
+
+
+        <label>Budget Amount</label>
+
+        <input
+            type="number"
+            name="limit_amount"
+            step="0.01"
+            required
+        >
+
+
+        <button type="submit">
+            Create Budget
+        </button>
+
+    </form>
+
+</div>
+
+
+<div class="container">
+
+    <h2>Your Budgets</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Month</th>
+
+            <th>Category</th>
+
+            <th>Limit</th>
+
+        </tr>
+
+
+        {% for budget in budgets %}
+
+        <tr>
+
+            <td>{{ budget.month }}</td>
+
+            <td>
+                {% if budget.category == 'Total' %}Total Month Budget{% else %}{{ budget.category }}{% endif %}
+            </td>
+
+            <td>₹{{ budget.limit_amount }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+
+<script>
+function toggleCategory() {
+    const type = document.getElementById("budgetType").value;
+    document.getElementById("categoryBox").style.display =
+        type === "category" ? "block" : "none";
+}
+</script>
+
+</body>
+
+</html>

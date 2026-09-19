@@ -1,0 +1,903 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Finance Assistant</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7ff;
+            color: #1f2a5a;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: white;
+
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 24px;
+            font-weight: bold;
+
+            color: #3546c8;
+        }
+
+        .logo-icon {
+            font-size: 30px;
+        }
+
+        nav .links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+
+            font-size: 16px;
+            font-weight: 500;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #eef0ff;
+            color: #3546c8;
+        }
+
+        .login-btn {
+            border: 1px solid #4b55d9;
+            color: #4b55d9 !important;
+        }
+
+        .register-btn {
+            background: #4b55d9;
+            color: white !important;
+        }
+
+        .register-btn:hover {
+            background: #343db7 !important;
+            color: white !important;
+        }
+
+
+        /* ================= HERO SECTION ================= */
+
+        .hero {
+            min-height: calc(100vh - 75px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 7%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #ffffff
+                );
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1250px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1.1fr;
+
+            gap: 50px;
+
+            align-items: center;
+        }
+
+
+        /* ================= LEFT CONTENT ================= */
+
+        .hero-content h1 {
+            font-size: 58px;
+
+            line-height: 1.1;
+
+            color: #25398e;
+
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #5361dc;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: #5d6685;
+
+            max-width: 550px;
+
+            margin-bottom: 30px;
+        }
+
+        .tagline {
+            font-size: 17px;
+
+            color: #4b55d9;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= BUTTONS ================= */
+
+        .hero-buttons {
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            padding: 14px 28px;
+
+            border-radius: 10px;
+
+            background: #4b55d9;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            box-shadow: 0 8px 20px rgba(75, 85, 217, 0.25);
+
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            background: #343db7;
+
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            padding: 14px 28px;
+
+            border-radius: 10px;
+
+            border: 2px solid #4b55d9;
+
+            color: #4b55d9;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .secondary-btn:hover {
+            background: #4b55d9;
+
+            color: white;
+        }
+
+
+        /* ================= IMAGE ================= */
+
+        .hero-image {
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+
+            max-width: 700px;
+
+            height: auto;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 45px rgba(42, 53, 130, 0.18);
+
+            display: block;
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            padding: 80px 7%;
+
+            background: white;
+
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 36px;
+
+            color: #25398e;
+
+            margin-bottom: 10px;
+        }
+
+        .features > p {
+            color: #6b7280;
+
+            margin-bottom: 45px;
+
+            font-size: 17px;
+        }
+
+        .feature-container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+        }
+
+        .feature-card {
+            padding: 30px 20px;
+
+            background: #f8f9ff;
+
+            border-radius: 15px;
+
+            border: 1px solid #e5e7ff;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 12px 30px rgba(54, 65, 180, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #25398e;
+
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= HOW IT WORKS ================= */
+
+        .how-it-works {
+            padding: 80px 7%;
+
+            background: #f5f7ff;
+
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 36px;
+
+            color: #25398e;
+
+            margin-bottom: 45px;
+        }
+
+        .steps {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 30px;
+        }
+
+        .step {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .step-number {
+            width: 50px;
+
+            height: 50px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #4b55d9;
+
+            color: white;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+
+            color: #25398e;
+        }
+
+        .step p {
+            color: #6b7280;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= CTA ================= */
+
+        .cta {
+            padding: 80px 20px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4b55d9,
+                    #6874e8
+                );
+
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 38px;
+
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            font-size: 18px;
+
+            margin-bottom: 25px;
+
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+
+            padding: 14px 30px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #4b55d9;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 17px;
+
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #17204f;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        footer p {
+            opacity: 0.8;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .hero-container {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                margin-top: 20px;
+            }
+
+            .feature-container {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            nav {
+                height: auto;
+
+                padding: 15px 5%;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+            nav .links {
+                gap: 5px;
+            }
+
+            nav a {
+                padding: 8px 10px;
+
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 50px 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .feature-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .features h2,
+            .how-it-works h2 {
+                font-size: 30px;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            <span class="logo-icon">💰</span>
+
+            <span>AI Finance Assistant</span>
+
+        </div>
+
+
+        <div class="links">
+
+            <a href="/login" class="login-btn">
+                Login
+            </a>
+
+            <a href="/register" class="register-btn">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-container">
+
+
+            <!-- LEFT SIDE -->
+
+            <div class="hero-content">
+
+                <div class="tagline">
+                    ✨ Smarter Spending • Better Planning
+                </div>
+
+
+                <h1>
+
+                    AI Finance
+                    <span>Assistant</span>
+
+                </h1>
+
+
+                <p>
+
+                    Take control of your money with a simple
+                    AI-powered finance assistant. Track your
+                    expenses, understand your spending habits,
+                    create budgets and plan your financial future.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="/register"
+                        class="primary-btn"
+                    >
+                        Get Started 🚀
+                    </a>
+
+
+                    <a
+                        href="/login"
+                        class="secondary-btn"
+                    >
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT SIDE IMAGE -->
+
+            <div class="hero-image">
+
+                
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features">
+
+        <h2>Everything You Need to Manage Your Money</h2>
+
+        <p>
+            Simple tools with AI-powered assistance
+        </p>
+
+
+        <div class="feature-container">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Track Expenses
+                </h3>
+
+                <p>
+                    Easily record your income and
+                    expenses and keep your financial
+                    information organized.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    AI Category Prediction
+                </h3>
+
+                <p>
+                    Let AI automatically identify
+                    categories for your expenses.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Set Budgets
+                </h3>
+
+                <p>
+                    Create monthly budgets and
+                    monitor your spending limits.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Plan Your Future
+                </h3>
+
+                <p>
+                    Understand your spending patterns
+                    and get simple future spending
+                    predictions.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="how-it-works">
+
+        <h2>
+            How It Works
+        </h2>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Create Your Account
+                </h3>
+
+                <p>
+                    Register your account and securely
+                    access your personal finance dashboard.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    Add Your Transactions
+                </h3>
+
+                <p>
+                    Add your income and expenses.
+                    The AI can help categorize your
+                    expenses automatically.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Understand Your Money
+                </h3>
+
+                <p>
+                    View charts, budgets and spending
+                    information from your dashboard.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CALL TO ACTION ================= -->
+
+    <section class="cta">
+
+        <h2>
+            Start Managing Your Finances Today
+        </h2>
+
+        <p>
+            Make smarter spending decisions with
+            your AI Finance Assistant.
+        </p>
+
+        <a
+            href="/register"
+            class="cta-btn"
+        >
+            Create Free Account
+        </a>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 AI Finance Assistant |
+            Academic Project
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
